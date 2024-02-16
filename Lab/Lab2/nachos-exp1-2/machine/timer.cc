@@ -53,11 +53,10 @@ Timer::Timer(VoidFunctionPtr timerHandler, _int callArg, bool doRandom)
 }
 
 //----------------------------------------------------------------------
-// Timer::ScheduleTimerInterrupt
-//	Schedule a new interrupt at the value returned by TimeOfNextInterrupt()
+// Timer:InsertInterrupt
+//	Insert a new timer interrupt.
 //----------------------------------------------------------------------
-void Timer::ScheduleTimerInterrupt() {
-    // Schedule a new timer interrupt to make it periodic at 40 Timer Ticks
+void Timer::InsertInterrupt() {
     interrupt->Schedule(TimerHandler, (_int) this, TimeOfNextInterrupt(), TimerInt);
 }
 
@@ -91,8 +90,7 @@ Timer::TimeOfNextInterrupt()
   /* Update below code so that it returns a fixed time quantum of 40 time ticks */
   
     if (randomize)
-	      return 1 + (Random() % (TimerTicks * 2));
+	return 1 + (Random() % (TimerTicks * 2));
     else
-	      // return TimerTicks;
-        return 40;
+	return 40; 
 }

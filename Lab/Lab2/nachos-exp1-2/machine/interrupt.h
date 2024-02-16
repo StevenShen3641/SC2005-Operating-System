@@ -99,6 +99,7 @@ class Interrupt {
     void setStatus(MachineStatus st) { status = st; }
 
     void DumpState();			// Print interrupt state
+    void RemoveInterrupt();  // remove the pending interrupt
     
 
     // NOTE: the following are internal to the hardware simulation code.
@@ -111,7 +112,6 @@ class Interrupt {
     					// by the hardware device simulators.
     
     void OneTick();       		// Advance simulated time
-    void RemoveInterrupt();  // Remove the 
 
   private:
     IntStatus level;		// are interrupts enabled or disabled?

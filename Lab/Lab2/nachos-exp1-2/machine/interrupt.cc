@@ -33,6 +33,7 @@
 void Interrupt::RemoveInterrupt() {
     pending->Remove();  // remove the pending interrupt
 }
+
 // String definitions for debugging messages
 
 static char *intLevelNames[] = { "off", "on"};

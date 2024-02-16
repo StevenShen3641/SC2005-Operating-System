@@ -206,8 +206,8 @@ Thread::Finish ()
 	/* Add code here to reset the timer interrupt so that the next 
 	   interrupt is triggered after 40 time ticks from now.
         */
-    interrupt->RemoveInterrupt();  // remove the pending interrupt since the current thread is finished
-    timer->ScheduleTimerInterrupt();  // schedule a new interrupt
+	interrupt->RemoveInterrupt();  // remove the pending interrupt since the current thread is finished
+	timer->InsertInterrupt();
     
 	Sleep();					// invokes SWITCH
     }
@@ -231,8 +231,8 @@ Thread::Finish ()
 	/* Add code here to reset the timer interrupt so that the next 
 	   interrupt is triggered after 40 time ticks from now.
 	 */
-    interrupt->RemoveInterrupt();  // remove the pending interrupt since the current thread is finished
-    timer->ScheduleTimerInterrupt();  // schedule a new interrupt
+	interrupt->RemoveInterrupt();  // remove the pending interrupt since the current thread is finished
+	timer->InsertInterrupt();
 	
 	Sleep();					// invokes SWITCH
     }

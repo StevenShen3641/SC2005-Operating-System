@@ -148,7 +148,7 @@ Initialize(int argc, char **argv)
     scheduler = new Scheduler();		// initialize the ready queue
     if (randomYield) {				// start the timer (if needed)
 	// timer = new Timer(TimerInterruptHandler, 0, randomYield);
-    // Set doRandom to be False for interrupts to occur at fixed intervals.
+	// Set doRandom to be False for interrupts to occur at fixed intervals.
 	timer = new Timer(TimerInterruptHandler, 0, FALSE);
 	/* Experiment 2*/
 	/* Debug message to denote scheduling of timer interrupt*/

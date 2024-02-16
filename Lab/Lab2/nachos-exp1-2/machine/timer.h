@@ -33,13 +33,13 @@ class Timer {
 
 // Internal routines to the timer emulation -- DO NOT call these
 
-    void Timer::ScheduleTimerInterrupt();
-    
     void TimerExpired();	// called internally when the hardware
 				// timer generates an interrupt
 
     int TimeOfNextInterrupt();  // figure out when the timer will generate
 				// its next interrupt 
+
+    void InsertInterrupt();  // insert a new timer interrupt
 
   private:
     bool randomize;		// set if we need to use a random timeout delay

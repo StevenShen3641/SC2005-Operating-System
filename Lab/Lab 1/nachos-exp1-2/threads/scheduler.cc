@@ -123,7 +123,8 @@ Scheduler::Run (Thread *nextThread)
     // If the old thread gave up the processor because it was finishing,
     // we need to delete its carcass.  Note we cannot delete the thread
     // before now (for example, in Thread::Finish()), because up to this
-    // point, we were still running on the old thread's stack!
+    // point, we were still running on the old thread's stack! 
+    // (which means we are still using the old thread to perform functions.)
     if (threadToBeDestroyed != NULL) {
         delete threadToBeDestroyed;
 	threadToBeDestroyed = NULL;

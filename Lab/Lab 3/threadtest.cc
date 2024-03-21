@@ -68,15 +68,17 @@ void TestValueOne() {
 
     Thread *t1 = new Thread("Increase_1");
     Thread *t2 = new Thread("Increase_2");
-    t1->Fork(Inc_v1, 0, 0);
-    t2->Fork(Inc_v1, 1, 1);
-
     Thread *t3 = new Thread("Decrease_1");
     Thread *t4 = new Thread("Decrease_2");
-    t3->Fork(Dec_v1, 0, 0);
-    t4->Fork(Dec_v1, 1, 0);
-    currentThread->Yield();
-    currentThread->Join(t2);
+    t1->Fork(Inc_v1, 1, 1);
+    t2->Fork(Inc_v1, 2, 1);
+    t3->Fork(Dec_v1, 3, 1);
+    t4->Fork(Dec_v1, 4, 1);
+    currentThread->Join(t1);
+	currentThread->Join(t2);
+    currentThread->Join(t3);
+    currentThread->Join(t4);
+
 
 	//2. checking the value. you should not modify the code or add any code lines behind
 	//this section.
@@ -114,15 +116,16 @@ void TestValueMinusOne() {
 
     Thread *t1 = new Thread("Decrease_1");
     Thread *t2 = new Thread("Decrease_2");
-    t1->Fork(Dec_v1, 0, 0);
-    t2->Fork(Dec_v1, 1, 0);
-
     Thread *t3 = new Thread("Increase_1");
     Thread *t4 = new Thread("Increase_2");
-    t3->Fork(Inc_v1, 0, 0);
-    t4->Fork(Inc_v1, 1, 1);
-    currentThread->Yield();
+    t1->Fork(Dec_v1, 1, 1);
+    t2->Fork(Dec_v1, 2, 1);
+    t3->Fork(Inc_v1, 3, 1);
+    t4->Fork(Inc_v1, 4, 1);
+    currentThread->Join(t1);
     currentThread->Join(t2);
+    currentThread->Join(t3);
+    currentThread->Join(t4);
 
 	//2. checking the value. you should not modify the code or add any code lines behind
 	//this section.
@@ -192,19 +195,17 @@ void TestConsistency()
 	value=0;
 	printf("enter TestConsistency, value=%d...\n", value);
 
-    Thread *t1 = new Thread("Inc_Consistent_1");
-    Thread *t2 = new Thread("Inc_Consistent_2");
-    t1->Fork(Inc_Consistent, 0, 1);
-    t2->Fork(Inc_Consistent, 1, 1);
-
-    Thread *t3 = new Thread("Dec_Consistent_1");
-    Thread *t4 = new Thread("Dec_Consistent_2");
-    t3->Fork(Dec_Consistent, 0, 1);
-    t4->Fork(Dec_Consistent, 1, 1);
-
-    // main thread gives up CPU and waits for last thread of Dec_Consistent before
-    // continuing
-    currentThread->Yield();
+    Thread *t1 = new Thread("Increase_1");
+    Thread *t2 = new Thread("Increase_2");
+    Thread *t3 = new Thread("Decrease_1");
+    Thread *t4 = new Thread("Decrease_2");
+    t1->Fork(Inc_Consistent, 1, 1);
+    t2->Fork(Inc_Consistent, 2, 1);
+    t3->Fork(Dec_Consistent, 3, 1);
+    t4->Fork(Dec_Consistent, 4, 1);
+    currentThread->Join(t1);
+    currentThread->Join(t2);
+    currentThread->Join(t3);
     currentThread->Join(t4);
 
 
